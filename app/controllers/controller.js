@@ -41,6 +41,29 @@ exports.create = (req, res) => {
   });
 };
 
+// Update matching identifiable citation
+exports.delete = (req, res) => {
+  CiteStash.findByIdAndDelete(req.params.id)
+  .then(citation => {
+    if(!citation) {
+      return res.status(404).send({
+        message: "Citation not found, id: " + req.params.id
+      });
+    }
+    res.send({ message: "Citation was deleted" });
+    console.log("Citation deleted.")
+  }).catch(err => {
+    if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+      return res.status(4040).send({
+        message: "Citation not found, id: " + req.params.id
+      });
+    }
+    return res.status(500).send({
+      message: "Error processing citation deletion, id: " + req.params.id
+    });
+  });
+};
+
 // Retrieve all citations
 exports.findAll = (req, res) => {
   CiteStash.find()
@@ -54,19 +77,21 @@ exports.findAll = (req, res) => {
   });
 };
 
+// Retrieve matching citation
 exports.findOne = (req, res) => {
   CiteStash.findById(req.params.id)
     .then(citation => {
       if(!citation) {
         return res.status(404).send({
-          message: "Citation with not found, id: " + req.params.id
+          message: "Citation not found, id: " + req.params.id
         });
       }
       res.send(citation);
+      console.log("Citation retrieved")
     }).catch(err => {
       if(err.kind === 'ObjectId') {
         return res.status(404).send({
-          message: "Citation with not found, id: " + req.params.id
+          message: "Citation not found, id: " + req.params.id
         });
       }
       return res.status(500).send({

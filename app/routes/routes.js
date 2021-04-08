@@ -8,6 +8,9 @@ module.exports = (app) => {
   // Add citation
   app.post('/citations', citations.create);
 
+  // Delete a selected citation by id
+  app.delete('/citations/:id', citations.delete);
+
   // Retrieve all citations selection
   app.get('/citations', citations.findAll);
 
