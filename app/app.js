@@ -22,6 +22,7 @@ async function run () {
 
   try {
 
+    // Database requirement statement
     const databaseConfig = await require('../config/database.config.js');
 
     mongoose.connect(databaseConfig.uri, {
@@ -42,9 +43,12 @@ async function run () {
       console.log(`Server listening on ${host}:${port}`);
     });
 
+    // Routes requirement statement
+    require('./routes/routes.js')(app);
+
   } catch(err) {
     return console.error(err.message);
   }
 }
 
-run().catch(console.dir);
+run()//.catch(console.dir);
