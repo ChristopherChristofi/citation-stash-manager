@@ -1,0 +1,34 @@
+{
+  "name": "citation-stash-manager",
+  "version": "0.0.2",
+  "description": "Simple content citations application to manage reference links, citations, and notes. Perfect for research and reviews.",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christopher-christofi/citation-stash-manager.git"
+  },
+  "keywords": [
+    "Javascript",
+    "Node.js",
+    "Express.js",
+    "Mongoose",
+    "MongoDB"
+  ],
+  "author": "Christopher Christofi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/christopher-christofi/citation-stash-manager/issues"
+  },
+  "homepage": "https://github.com/christopher-christofi/citation-stash-manager#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
