@@ -6,6 +6,7 @@ const CiteStashSchema = mongoose.Schema({
   title: String,
   author: String,
   link: String,
+  project: String,
   description: String,
   notes: String
 }, {
