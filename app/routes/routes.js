@@ -8,4 +8,9 @@ module.exports = (app) => {
   // Add citation
   app.post('/citations', citations.create);
 
+  // Retrieve all citations selection
+  app.get('/citations', citations.findAll);
+
+  // Retrieve selected citation by unique id
+  app.get('/citations/:id', citations.findOne);
 }
