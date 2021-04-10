@@ -25,7 +25,6 @@ exports.create = (req, res) => {
     author: req.body.author,
     link: req.body.link,
     project: req.body.project || "No Project",
-    description: req.body.description || "Empty description",
     notes: req.body.notes || "Empty notes"
   });
 
@@ -54,7 +53,7 @@ exports.delete = (req, res) => {
     console.log("Citation deleted.")
   }).catch(err => {
     if(err.kind === 'ObjectId' || err.name === 'NotFound') {
-      return res.status(4040).send({
+      return res.status(404).send({
         message: "Citation not found, id: " + req.params.id
       });
     }
@@ -96,6 +95,36 @@ exports.findOne = (req, res) => {
       }
       return res.status(500).send({
         message: "Error retrieving citation with id: " + req.params.id
+    });
+  });
+};
+
+exports.update = (req, res) => {
+  // Input validation
+  if(!req.body.notes) {
+    return res.status(400).send({
+      message: "Citation notes was empty."
+    });
+  }
+
+  CiteStash.findByIdAndUpdate(req.params.id, {
+    notes: req.body.notes
+  }, {new: true})
+  .then(citation => {
+    if(!citation) {
+      return res.status(404).send({
+        message: "Citation id not found: " + req.params.id
+      });
+    }
+    res.send(citation);
+  }).catch(err => {
+    if(err.kind === 'ObjectId') {
+      return res.status(404).send({
+        message: "Citation id not found: " + req.params.id
+      });
+    }
+    return res.status(500).send({
+      message: "Error updating citation notes with id " + req.params.id
     });
   });
 };
