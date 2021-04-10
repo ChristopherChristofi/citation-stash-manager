@@ -7,7 +7,6 @@ const CiteStashSchema = mongoose.Schema({
   author: String,
   link: String,
   project: String,
-  description: String,
   notes: String
 }, {
   // Track when created and updated
