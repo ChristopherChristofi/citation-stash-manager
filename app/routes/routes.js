@@ -16,4 +16,6 @@ module.exports = (app) => {
 
   // Retrieve selected citation by unique id
   app.get('/citations/:id', citations.findOne);
+
+  app.put('/citations/:id', citations.update);
 }
