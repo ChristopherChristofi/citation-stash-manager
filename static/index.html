@@ -7,11 +7,20 @@
     <title>Home</title>
     <link href="./main.css" rel="stylesheet" />
 </head>
-<body>
+<body ng-app="mainApp">
     <div class="box">
-        <div class="home">
-            <h1>Hello Welcome.</h1>
-            <h3>Connection Successful</h3>
+        <div class="container">
+            <div class="header" ng-controller="headerController">
+                <div class="title_row">
+                    <h1>Citation Stash</h1>
+                </div>
+                <div class="menu_row">
+                    <ul id="menu">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </body>
